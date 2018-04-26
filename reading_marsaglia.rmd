@@ -1,0 +1,65 @@
+---
+title: "Reading Marsaglia bits into R"
+author: "alxfed"
+date: "April 26, 2018"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## How to ingest Marsaglia bit files into R
+
+The initial configuration: I have my Marsaglia bits in the root directory of my external (USB) hard drive, hence their address is: 
+1. On Windows: F:\bits.01 and up to F:\bits.60
+2. On Linux:   /media/alxfed/toca/bits.01 - bits.60
+
+Here's the instruction. 
+
+```{r}
+
+# Windows version of file opening
+# file_to_read = file(description = "F:/bits.42", open = "rb")
+# "rb" which means read binary is important on Windows but
+# equivalent to "r" on Linux and Unix (they say)
+
+# Linux version of file opening
+file_to_read = file(description = "/media/alxfed/toca/bits.42", open = "rb", raw = TRUE)
+
+# Read n raw bytes from the file
+A <- readBin(file_to_read, raw(), n = 10000000)
+# raw() for bytes, integer() for integers etc.
+
+# Then close the connection
+close.connection(file_to_read)
+```
+
+We can test what has been read
+
+```{r}
+# This is what has been read
+print(A[1:10])
+
+# We need to transform the hexadecimal form of the raw
+# bytes into integers if we want to use them
+# notice that storing the data in the raw form as it was
+# ingested stores 3x amount of memory.
+
+print(as.integer(A[1:10]))
+```
+
+We can plot every 10000-th point and see whether the distribution is uniform enough
+
+```{r}
+n <- c(1:1000)
+plot(n, as.integer(A[10000*n]))
+```
+
+Seems to be uniform enough
+
+##  R Markdown message
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. 
