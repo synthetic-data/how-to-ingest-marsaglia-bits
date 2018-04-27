@@ -12,5 +12,13 @@ A = np.fromfile(
         sep = ""
     ).reshape(shape)
 
-print(A)
+print(A[:, 0, 0, 0])
+print(A[:, ...])
 
+# reading slices
+#def read_slice(filename, shape):
+    # shape = (ndim,ndim,ndim)
+#    fd = open(filename, 'rb')
+#    data = np.fromfile(file=fd, dtype=np.uint8).reshape(shape)
+#    fd.close()
+#    return data

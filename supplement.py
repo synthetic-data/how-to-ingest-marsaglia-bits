@@ -16,4 +16,3 @@ def file_name(n=1):
     else:
         raise ValueError('There is no such file in Marsaglia set of bits')
 
-
