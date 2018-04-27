@@ -17,4 +17,3 @@ def file_name(n=1):
         raise ValueError('There is no such file in Marsaglia set of bits')
 
 
-print(file_name(1))
