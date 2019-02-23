@@ -48,4 +48,4 @@ if __name__ =='__main__':
                        'bits.49', 'bits.50', 'bits.51', 'bits.52',
                        'bits.53', 'bits.54', 'bits.55', 'bits.56',
                        'bits.57', 'bits.58', 'bits.59', 'bits.60']
-    A = np.zeros((100,100,100), dtype = nupy.int8)
+    A = np.zeros((100,100,100), dtype = numpy.int8)
