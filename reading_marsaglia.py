@@ -4,30 +4,15 @@ Reading Marsaglia bits into statistical tests in Python
 
 
 import numpy as np
-import os
 
-def bits_from_marsaglia_cd(np_array='None',
-                           path_to_cd=".",
-                           files_to_ingest=['bits.01'],
-                           word_length=8, n_words=10):
-    """
-    Reads bits from the files on Marsaglia CD ROM, combines them
-    into words of predefined length and loads thm them into a numpy
-    array.
-    :param np_array:
-    :param path_to_cd:
-    :param files_to_ingest:
-    :param word_length:
-    :param n_words:
-    :return: np_array filled with Marsaglia random bits
-    """
 
-    file_to_read = open('/media/alxfed/toca/bits.42', mode="rb")
-    a = file_to_read.read(100)
-    out = file_to_read.close()
-    printable_bytes = [int(x) for x in a]
-    # or printable_bytes = [int(x) for x in a if x < 10]
-    return printable_bytes[0:9]
+def bits_from_marsaglia_cd(np_array_shape = [], path_to_cd = ".", files_to_ing = [],
+                           start_file=40):
+    file_to_read = path_to_cd + "/" + files_to_ing[start_file]
+    A = np.fromfile(file_to_read, dtype = np.uint8,
+                    count = np.prod(np_array_shape),
+                    sep = "").reshape(np_array_shape)
+    return A
 
 
 if __name__ =='__main__':
@@ -47,15 +32,14 @@ if __name__ =='__main__':
                        'bits.49', 'bits.50', 'bits.51', 'bits.52',
                        'bits.53', 'bits.54', 'bits.55', 'bits.56',
                        'bits.57', 'bits.58', 'bits.59', 'bits.60']
-    ASHAPE = (1000, 100, 100)
+    ASHAPE = [1000, 100, 100]
 
-    A = np.fromfile(
-        '/media/alxfed/toca/toshiba_new_archive/Marsaglia/cdrom/bits.45',
-        dtype=np.uint8,
-        count=10000000,
-        sep="").reshape(ASHAPE)
-
+    A = bits_from_marsaglia_cd(np_array_shape = ASHAPE,
+                               path_to_cd = CD_PATH,
+                               files_to_ing = FILES_TO_INGEST,
+                               start_file = 44)
     B = A[35:37, 45:47, 55:57]
-
     print(B, "\n")
     print(A.shape)
+
+
