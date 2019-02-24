@@ -57,4 +57,4 @@ if __name__ =='__main__':
 
     B = A[35:37, 45:47, 55:57]
 
-    print(B)
+    print(B, "\n")
