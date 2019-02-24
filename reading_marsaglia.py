@@ -19,7 +19,7 @@ def bits_from_marsaglia_cd(np_array_shape = [], path_to_cd = ".", files_to_ing =
     :return: np array of given shape filled with Marsaglia bytes.
     """
     file_to_read = path_to_cd + "/" + files_to_ing[start_file]
-    A = np.fromfile(file_to_read, dtype = np.uint8,
+    A = np.fromfile(file_to_read, dtype = np.int8,
                     count = np.prod(np_array_shape),
                     sep = "").reshape(np_array_shape)
     return A
@@ -48,7 +48,7 @@ if __name__ =='__main__':
                                path_to_cd = CD_PATH,
                                files_to_ing = FILES_TO_INGEST,
                                start_file = 44)
-    B = A[35:37, 45:47, 55:57]
+    B = A[88:95, 88:95, 88:95]
     print(B, "\n")
     print(A.shape)
 
