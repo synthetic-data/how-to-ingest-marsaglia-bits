@@ -8,6 +8,16 @@ import numpy as np
 
 def bits_from_marsaglia_cd(np_array_shape = [], path_to_cd = ".", files_to_ing = [],
                            start_file=40):
+    """
+    This is a function that reads a Marsaglia file and creates a np.array of
+    unsigned Marsaglia bytes comprised of Marsaglia bits.
+
+    :param np_array_shape: list giving a shape of a desired np.array
+    :param path_to_cd: path to the directory wher Marsaglia files are
+    :param files_to_ing: the list of all Marsaglia files
+    :param start_file: number of the start file in Marsaglia set
+    :return: np array of given shape filled with Marsaglia bytes.
+    """
     file_to_read = path_to_cd + "/" + files_to_ing[start_file]
     A = np.fromfile(file_to_read, dtype = np.uint8,
                     count = np.prod(np_array_shape),
