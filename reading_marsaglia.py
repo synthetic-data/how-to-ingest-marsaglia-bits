@@ -22,14 +22,13 @@ def bits_from_marsaglia_cd(np_array='None',
     :return: np_array filled with Marsaglia random bits
     """
 
-file_to_read = open('/media/alxfed/toca/bits.42', mode="rb")
-a = file_to_read.read(100)
-out = file_to_read.close()
+    file_to_read = open('/media/alxfed/toca/bits.42', mode="rb")
+    a = file_to_read.read(100)
+    out = file_to_read.close()
+    printable_bytes = [int(x) for x in a]
+    # or printable_bytes = [int(x) for x in a if x < 10]
+    return printable_bytes[0:9]
 
-printable_bytes = [int(x) for x in a]
-# or printable_bytes = [int(x) for x in a if x < 10]
-
-print(printable_bytes[0:9])
 
 if __name__ =='__main__':
     CD_PATH = '/media/alxfed/toca/toshiba_new_archive/Marsaglia/cdrom'
@@ -48,4 +47,14 @@ if __name__ =='__main__':
                        'bits.49', 'bits.50', 'bits.51', 'bits.52',
                        'bits.53', 'bits.54', 'bits.55', 'bits.56',
                        'bits.57', 'bits.58', 'bits.59', 'bits.60']
-    A = np.zeros((100,100,100), dtype = numpy.int8)
+    ASHAPE = (100, 100, 100)
+
+    A = np.fromfile(
+        '/media/alxfed/toca/toshiba_new_archive/Marsaglia/cdrom/bits.45',
+        dtype=np.uint8,
+        count=1000000,
+        sep="").reshape(ASHAPE)
+
+    B = A[35:37, 45:47, 55:57]
+
+    print(B)
