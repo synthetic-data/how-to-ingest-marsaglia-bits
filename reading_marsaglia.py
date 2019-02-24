@@ -47,14 +47,15 @@ if __name__ =='__main__':
                        'bits.49', 'bits.50', 'bits.51', 'bits.52',
                        'bits.53', 'bits.54', 'bits.55', 'bits.56',
                        'bits.57', 'bits.58', 'bits.59', 'bits.60']
-    ASHAPE = (100, 100, 100)
+    ASHAPE = (1000, 100, 100)
 
     A = np.fromfile(
         '/media/alxfed/toca/toshiba_new_archive/Marsaglia/cdrom/bits.45',
         dtype=np.uint8,
-        count=1000000,
+        count=10000000,
         sep="").reshape(ASHAPE)
 
     B = A[35:37, 45:47, 55:57]
 
     print(B, "\n")
+    print(A.shape)
