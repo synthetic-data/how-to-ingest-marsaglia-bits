@@ -4,26 +4,27 @@ Reading Marsaglia bits into statistical tests in Python
 import numpy as np
 
 
-def bits_from_marsaglia_cd(np_array_shape = [], path_to_cd = ".", files_to_ing = [],
+def bits_from_marsaglia_cd(np_array_shape = [],
+                           path_to_cd = '.',
+                           files_to_ingest = [],
                            start_file=40):
     """
     This is a function that reads a Marsaglia file and creates a np.array of
     unsigned Marsaglia bytes comprised of Marsaglia bits.
-
     :param np_array_shape: list giving a shape of a desired np.array
     :param path_to_cd: path to the directory wher Marsaglia files are
-    :param files_to_ing: the list of all Marsaglia files
+    :param files_to_ingest: the list of all Marsaglia files
     :param start_file: number of the start file in Marsaglia set
     :return: np array of given shape filled with Marsaglia bytes.
     """
-    file_to_read = path_to_cd + "/" + files_to_ing[start_file]
+    file_to_read = f"{path_to_cd}/{files_to_ingest[start_file]}"
     A = np.fromfile(file_to_read, dtype = np.int8,
                     count = np.prod(np_array_shape),
                     sep = "").reshape(np_array_shape)
     return A
 
 
-if __name__ =='__main__':
+def main():
     CD_PATH = '/media/alxfed/data/Marsaglia/cdrom'
     FILES_TO_INGEST = ['bits.01', 'bits.02', 'bits.03', 'bits.04',
                        'bits.05', 'bits.06', 'bits.07', 'bits.08',
@@ -42,12 +43,16 @@ if __name__ =='__main__':
                        'bits.57', 'bits.58', 'bits.59', 'bits.60']
     ASHAPE = [100, 100, 100]
 
-    A = bits_from_marsaglia_cd(np_array_shape = ASHAPE,
-                               path_to_cd = CD_PATH,
-                               files_to_ing = FILES_TO_INGEST,
-                               start_file = 44)
+    A = bits_from_marsaglia_cd(np_array_shape=ASHAPE,
+                               path_to_cd=CD_PATH,
+                               files_to_ingest=FILES_TO_INGEST,
+                               start_file=44)
+
     B = A[88:95, 88:95, 88:95]
     print(B, "\n")
     print(A.shape)
+    return
 
 
+if __name__ =='__main__':
+    main()
