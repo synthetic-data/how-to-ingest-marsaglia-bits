@@ -24,7 +24,7 @@ def bits_from_marsaglia_cd(np_array_shape = [], path_to_cd = ".", files_to_ing =
 
 
 if __name__ =='__main__':
-    CD_PATH = '/media/alxfed/toca/toshiba_new_archive/Marsaglia/cdrom'
+    CD_PATH = '/media/alxfed/data/Marsaglia/cdrom'
     FILES_TO_INGEST = ['bits.01', 'bits.02', 'bits.03', 'bits.04',
                        'bits.05', 'bits.06', 'bits.07', 'bits.08',
                        'bits.09', 'bits.10', 'bits.11', 'bits.12',
