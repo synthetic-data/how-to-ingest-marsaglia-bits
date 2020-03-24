@@ -1,8 +1,6 @@
 """
 Reading Marsaglia bits into statistical tests in Python
 """
-
-
 import numpy as np
 
 
