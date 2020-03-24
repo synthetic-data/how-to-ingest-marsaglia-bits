@@ -18,9 +18,9 @@ def bits_from_marsaglia_cd(np_array_shape = [],
     :return: np array of given shape filled with Marsaglia bytes.
     """
     file_to_read = f"{path_to_cd}/{files_to_ingest[start_file]}"
-    A = np.fromfile(file_to_read, dtype = np.int8,
-                    count = np.prod(np_array_shape),
-                    sep = "").reshape(np_array_shape)
+    A = np.fromfile(file_to_read, dtype=np.int8,
+                    count=np.prod(np_array_shape),
+                    sep="").reshape(np_array_shape)
     return A
 
 
